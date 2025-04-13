@@ -63,3 +63,10 @@ ACID 대신 BASE를 택해 성능과 가용성을 우선시함
 모든 데이터가 JSON 형태로 저장, 스키마가 없음
 다양한 인덱싱 제공
 일관성이 매우 중요한 작업에는 사용하기 힘들다
+
+## PostgreSQL 점유율 급상승 이유
+- 오픈소스지만 강력한 기능
+PostgreSQL은 무료인데도, 거의 모든 상용 DBMS 못지않은 기능을 갖추고 있어.
+특히 : 트랜잭션 (ACID) 완벽 지원, JSON/JSONB 지원, 복잡한 SQL 쿼리, 서브쿼리, 윈도우 함수 지원, GIS(위치 정보) 지원 (PostGIS), 확장 기능이 풍부함 (ex. Full-text search, CUBE, ROLLUP, foreign data wrapper 등)
+
+📌 결론: 상용 제품 못지않은 파워풀한 오픈소스
