@@ -5,4 +5,6 @@
 ## DB
 ### SQL 개념들
 - [SQL VS NoSQL](https://github.com/seonyong-kim/TIL/blob/main/DataBase/SQL%20VS%20NoSQL)
-## OS
+## AI
+### YOLO
+- [12345](https://github.com/seonyong-kim/TIL/blob/main/AI/YOLO/1.md)
