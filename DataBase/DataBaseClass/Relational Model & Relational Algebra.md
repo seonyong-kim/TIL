@@ -92,3 +92,10 @@ database : 여러 relation(=DB전체)에 대한것
 ## Set difference (–) of two relations
 앞에는 있고 뒤에는 없는것을 반환
 ![image](https://github.com/user-attachments/assets/5cd1e9d6-c2eb-4a57-afd1-d1fb71a590a0)
+
+## Rename (ρ) Operation
+결과에 이름을 부여해 참조 할 수 있다. <br>
+하나에 여러개의 이름이 가능하다.
+### ex)
+ρ_x(E) : 결과 E를 X로 참조
+ρ_x(A1,A2,A3,.....,An)(E) : E의 결과물을 x로, 속성(컬럼)은 A1, A2, ..., An으로 한다.
