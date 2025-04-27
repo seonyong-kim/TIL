@@ -82,4 +82,57 @@ FROM instructor;
 ```
 
 ## Where 절
+where절은 조건을 지정하여 원하는 데이터를 필터링한다.
+ex) 컴퓨터 공학과 교수중에 급여가 80000을 넘는 사람을 모두 찾으시오
+```sql
+ select name
+ from instructor
+ where dept_name = ‘Comp. Sci.' and salary > 80000
+```
+결과는 and, or, not으로 연결 가능
 
+## form 절
+쿼리에 사용할 테이블 나열, 다른 조건이 없으면 catesian(X)곱과 같은 결과가 나온다.
+ex) instructor와 teaches의 데카르트 곱을 구하시오
+```SQL
+select *
+from instructor, teaches
+```
+
+## Joins
+ex) 컴퓨터 공학과가 제공하는 각 과목의 과목 ID, 학기, 연도, 과목 제목을 찾으시오.
+```SQL
+select section.course_id, semester, year, title
+from section, course
+where  section.course_id = course.course_id and
+  dept_name = ‘Comp. Sci.'
+```
+ex) 수업을 가르친 모든 교수들의 이름과 그들이 가르친 과목 ID를 찾으시오
+```SQL
+select name, course_id
+from instructor, teaches
+where  instructor.ID = teaches.ID
+```
+
+## Natural Join
+Natural Join은 모든 공통 attibute의 값이 같은 tuple들을 매칭하고, 각 공통 column은 하나만 남긴다.
+**Natural Join의 위험성**: 관련 없는 속성들이 같은 이름을 가질 경우 잘못 연결될 수 있다.
+ex) 교수들의 이름과 그들이 가르치는 과목 제목을 함께 나열하라.
+1. Incorrect version
+```SQL
+select name, title
+from instructor natural join teaches natural join course;
+```
+2. Correct version
+```SQL
+select name, title
+from instructor natural join teaches, course
+where teaches.course_id = course.course_id;
+```
+3. Another correct version
+```SQL
+select name, title
+from (instructor natural join teaches) join course using(course_id);
+```
+
+## The Rename Operation
