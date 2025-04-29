@@ -7,8 +7,8 @@
 - [Relational Model & Relational Algebra](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/Relational%20Model%20%26%20Relational%20Algebra.md)
 - [SQL Basics](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/SQL%20Basics.md)
 ### DBMS
-- [SQL VS NoSQL](https://github.com/seonyong-kim/TIL/blob/main/DataBase/SQL%20%EA%B0%9C%EB%85%90%EB%93%A4/SQL%20VS%20NoSQL.md](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/SQL%20VS%20NoSQL.md)
-- [DBMS 비교](https://github.com/seonyong-kim/TIL/blob/main/DataBase/SQL%20%EA%B0%9C%EB%85%90%EB%93%A4/DBMS%20%EB%B9%84%EA%B5%90.md](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/DBMS%EB%93%A4%20%EB%B9%84%EA%B5%90.md)
+- [SQL VS NoSQL](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/SQL%20VS%20NoSQL.md)
+- [DBMS 비교](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/DBMS%EB%93%A4%20%EB%B9%84%EA%B5%90.md)
 - PostgreSQL
   - [error](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/PostgreSQL/error.md)
 ## AI
