@@ -6,10 +6,11 @@
 ### DataBase 수업
 - [Relational Model & Relational Algebra](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/Relational%20Model%20%26%20Relational%20Algebra.md)
 - [SQL Basics](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/SQL%20Basics.md)
-### SQL 개념들
-- [SQL VS NoSQL](https://github.com/seonyong-kim/TIL/blob/main/DataBase/SQL%20%EA%B0%9C%EB%85%90%EB%93%A4/SQL%20VS%20NoSQL.md)
-- [DBMS 비교](https://github.com/seonyong-kim/TIL/blob/main/DataBase/SQL%20%EA%B0%9C%EB%85%90%EB%93%A4/DBMS%20%EB%B9%84%EA%B5%90.md)
-  
+### DBMS
+- [SQL VS NoSQL](https://github.com/seonyong-kim/TIL/blob/main/DataBase/SQL%20%EA%B0%9C%EB%85%90%EB%93%A4/SQL%20VS%20NoSQL.md](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/SQL%20VS%20NoSQL.md)
+- [DBMS 비교](https://github.com/seonyong-kim/TIL/blob/main/DataBase/SQL%20%EA%B0%9C%EB%85%90%EB%93%A4/DBMS%20%EB%B9%84%EA%B5%90.md](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/DBMS%EB%93%A4%20%EB%B9%84%EA%B5%90.md)
+- PostgreSQL
+  - [error](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/PostgreSQL/error.md)
 ## AI
 ### YOLO
 - [12345](https://github.com/seonyong-kim/TIL/blob/main/AI/YOLO/1.md)
@@ -30,3 +31,7 @@
      - [2. 스크럼 기법](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/1.%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD/2.%20%EC%8A%A4%ED%81%AC%EB%9F%BC%20%EA%B8%B0%EB%B2%95.md)
      - [3. XP 기법](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/1.%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD/3.%20XP%20%EA%B8%B0%EB%B2%95.md)
      - [4. 현행 시스템 파악]()
+
+## 알고리즘
+### 기본
+- [순열과 조합](https://github.com/seonyong-kim/TIL/blob/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B8%B0%EB%B3%B8/%EC%88%9C%EC%97%B4%EA%B3%BC%20%EC%A1%B0%ED%95%A9.md)
