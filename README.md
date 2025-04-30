@@ -32,6 +32,10 @@
   - [1강 리액트 네이티브 설치 및 세팅(expo ver)](https://github.com/seonyong-kim/VoV-todo-app/blob/main/study%20%EA%B3%BC%EC%A0%95%20%EA%B8%B0%EB%A1%9D/1%EA%B0%95.md)
   - [2강 리액트 네비게이션 사용을 위한 설치 및 세팅, 네비게이션 사용](https://github.com/seonyong-kim/VoV-todo-app/blob/main/study%20%EA%B3%BC%EC%A0%95%20%EA%B8%B0%EB%A1%9D/2%EA%B0%95.md)
 
+## OS
+### OS 수업
+- [4장 Processor](https://github.com/seonyong-kim/TIL/blob/main/OS/4%EC%9E%A5%20Processor.md)
+
 ## 정보처리기사
 ### 1과목
 - 1장 요구사항 확인
