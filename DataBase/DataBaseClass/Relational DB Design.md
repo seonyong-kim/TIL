@@ -1,0 +1,97 @@
+# Relational DB Design
+## F+ 계산절차
+```
+ F + = F
+ repeat
+   for each functional dependency f in F+
+     apply reflexivity and augmentation rules on f
+     add the resulting functional dependencies to F +
+   for each pair of functional dependencies f1and f2 in F +
+     if f1 and f2 can be combined using transitivity
+       then add the resulting functional dependency to F +
+ until F + does not change any further
+```
+reflexivity와 augmentation을 f에 적용해 더 많은 functional dependencies를 적용하고 나온 결과를 F+에 추가한다.<br>
+F+안에 있는 두 쌍에 대해 transitivity가 가능한지 확인하고 가능하면 결과를 F+에 추가한다.<br>
+위 과정을 F+가 변하기 전까지 반복한다. 최악의 경우 O(2^n) F+의 개수만큼
+
+## Closure of Functional Dependencies
+- 추가적인 rules :
+  - α → β이고, α → γ라면, α → βγ도 성립한다 <br>
+    증명 : αα -> αβ, αα -> α 이므로 α -> αβ, αβ -> βγ 이다.
+  - α → βγ가 성립하면, α → β도 성립하고 α → γ도 성립한다 <br>
+    증명 : βγ -> β and βγ -> γ 이면 α -> βγ -> β 이고, α -> βγ -> γ 이다.
+  - α → β이고, γβ → δ라면, αγ → δ도 성립한다 <br>
+    증명 : α → β 이면 αγ -> βγ -> δ
+
+## Closure of Attribute Sets
+속성 집합 α가 주어졌을 때, α⁺ (α의 폐포) 는 α로부터 함수적으로 결정될 수 있는 모든 속성들의 집합이다. <br>
+이때 α⁺는 주어진 함수적 종속성 집합 F에 대해 정의된다.
+``` 
+result := α;
+ while (changes to result) do
+ for each β → γ in F do
+ begin
+ if β ⊆ result then result := result ∪ γ
+ end
+```
+α → result 이고 β → γ 일때 if부분 만족시 result → β 이므로 α → γ 이다.
+
+### Example of Attribute Set Closure
+- R = (A, B, C, G, H, I)
+- F = {A → B, A → C, CG → H, CG → I, B → H}
+- (**AG+**) 주어진 함수적 종속성 집합 F 아래에서 (AG)⁺를 계산한 결과:
+1. result = AG
+2. A → B, A → C 사용 → result = ABCG
+3. CG → H 사용 가능 (CG ⊆ ABCG) → result = ABCGH
+4. CG → I 사용 가능 (CG ⊆ ABCGH) → result = ABCGHI
+최종적으로 (AG)⁺ = {A, B, C, G, H, I} AG에서 모든것으로 갈 수 있으므로 superkey이다.
+- AG는 슈퍼키인가?
+-- A+에 대해
+  1. result = A+
+  2. result = ABC
+  3. result = ABCH -> A는 keyX
+-- G+에 대해
+  1. result = G -> G도 keyX <br>
+따라서 AG+는 cadidate key이다.
+
+## Uses of Attribute Closure
+there are several uses of the attribute closure algorithm:
+- Testing for Superkey :<br>
+  α가 슈퍼키인지 확인하려면, α⁺를 계산하고 **R(릴레이션의 모든 속성)**을 포함하는지 확인한다.
+- Testing Functional Dependencies :<br>
+  함수적 종속성 α → β가 성립하는지(F⁺에 포함되는지) 확인하려면, α⁺를 구해서 β가 그 안에 포함되는지 확인하면 된다. 
+- Computing Closure of F (F⁺ 구하기) :<br>
+  F+를 다 구해서 Union을 통해 구할 수 있다.
+
+## Lossless-join Decomposition
+- R = (R₁, R₂)로 쪼갰다. we require that for all possible relations r on schema R <br>
+**r = π_R₁(r) ⨝ π_R₂(r)** -> 각각 쪼갠것을 join하면 r로 원상복구 가능
+- A decomposition of R into R₁ and R₂ is lossless join if at least one of the following dependencies is in F⁺:
+  - R₁ ∩ R₂ → R₁
+  - R₁ ∩ R₂ → R₂ <br>
+Thus, if R₁ ∩ R₂ forms a superkey of either R₁ or R₂, then the decomposition of R is a lossless decomposition
+- 참고사항 : <br>
+  R = (A,B,C) -> attribute 집합 / r(A,B,C) -> relation
+
+### Example
+- R = (A, B, C) <br>
+F = {A → B, B → C) A가 key이다. <br>
+
+2가지 다른 방법으로 쪼갤 수 있다.
+1. R1 = (A, B),   R2 = (B, C)
+- Lossless-join decomposition : R1 ∩ R2 = {B} and B → BC 이므로 R1 ∩ R2 = R2(={BC})이다. <br>
+따라서 Dependency preserving
+2. R1 = (A, B),   R2 = (A, C)
+- Lossless-join decomposition : R1 ∩ R2 = {A} and A → AB R1 ∩ R2 = R1(={AB})이다. <br>
+하지만 Not dependency preserving B -> C를 바로 확인 불가능하기 때문
+
+## Dependency Preservation
+Fᵢ는 F⁺중에서 Rᵢ에 포함된 attributes만 사용하는 set of dependencies이다.
+릴레이션 R을 R₁, R₂, ..., Rₙ으로 분해했을 때, 다음 조건이 만족되면 그 분해는 **함수적 종속성 보존(dependency preserving)**이라 한다:
+
+(F₁ ∪ F₂ ∪ … ∪ Fₙ)⁺ = F⁺
+
+이 조건이 만족되지 않으면,
+함수적 종속성 위반 여부를 검사하려면
+**릴레이션들을 조인(join)**해야 하며, 이는 비용이 많이 든다.
