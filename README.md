@@ -51,3 +51,8 @@
 - 기본용
   - [순열과 조합](https://github.com/seonyong-kim/TIL/blob/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B8%B0%EB%B3%B8/%EC%88%9C%EC%97%B4%EA%B3%BC%20%EC%A1%B0%ED%95%A9.md)
 
+## 기타
+### PM
+### 개발
+### PM과 개발
+- [Seeds](https://github.com/seonyong-kim/PM-/blob/main/PM%EA%B3%BC%20%EA%B0%9C%EB%B0%9C.md)
