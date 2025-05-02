@@ -23,3 +23,8 @@ app = Flask(__name__)
 def hello_pybo():
   return 'Hello, Pybo!'
 ```
+
+```
+flask --app hello_world.py run
+```
+로 실행
