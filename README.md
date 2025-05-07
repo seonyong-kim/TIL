@@ -49,6 +49,10 @@
      - [8. 요구사항 분석 CASE와 HIPO](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/1.%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD/8.%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EB%B6%84%EC%84%9D%20CASE%EC%99%80%20HIPO.md)
      - [9. UML(Unified Modeling Language)](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/1.%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD/9.%20UML(Unified%20Modeling%20Language).md)
      - [10. 주요 UML 다이어그램](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/1.%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD/10.%20%EC%A3%BC%EC%9A%94%20UML%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.md)
+- 2장 화면설계
+      - [11. 사용자 인터페이스](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/2.%20%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84/11.%20%EC%82%AC%EC%9A%A9%EC%9E%90%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
+      - [12. UI 설계 도구](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/2.%20%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84/12.%20UI%20%EC%84%A4%EA%B3%84%20%EB%8F%84%EA%B5%AC.md)
+      - [13. 품질 요구사항]()
 
 ## Algorithm
 ### Algorithm 수업
