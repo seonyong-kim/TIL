@@ -46,7 +46,7 @@
 
 ## Algorithm
 ### Algorithm 수업
-- [7. Graphs and Graph Traversals](https://github.com/seonyong-kim/TIL/blob/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%88%98%EC%97%85/7.%20Graphs%20and%20Graph%20Traversals.md
+- [7. Graphs and Graph Traversals](https://github.com/seonyong-kim/TIL/blob/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%88%98%EC%97%85/7.%20Graphs%20and%20Graph%20Traversals.md)
 - [8. Graph Optimization Problems and Greedy Algorithms](https://github.com/seonyong-kim/TIL/blob/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%88%98%EC%97%85/8.%20Graph%20Optimization%20Problems%20and%20%20Greedy%20Algorithms.md)
 ### 코딩테스트 준비
 - 기본용
