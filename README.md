@@ -2,6 +2,12 @@
 ```
 오늘 하루 공부한 내용을 정리해 기록합니다.
 ```
+## 컴퓨터 구조론
+- [수업](https://github.com/seonyong-kim/TIL/tree/main/%EC%BB%B4%ED%93%A8%ED%84%B0%20%EA%B5%AC%EC%A1%B0%EB%A1%A0/%EC%88%98%EC%97%85)<br>
+
+1 &nbsp; &nbsp; &nbsp; 2 &nbsp; &nbsp; &nbsp; 3 &nbsp; &nbsp; &nbsp; 4 The Processor &nbsp; &nbsp; &nbsp; <br>
+5  
+
 ## DB
 ### DataBase 수업
 - [2. Relational Model & Relational Algebra](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/Relational%20Model%20%26%20Relational%20Algebra.md)
@@ -47,8 +53,9 @@
 ### 1과목
 - [1장 요구사항 확인](https://github.com/seonyong-kim/TIL/tree/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/1.%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)
   - 세부 목차<br>
-    1 소프트웨어 생명주기 &nbsp; &nbsp; &nbsp; 2 스크럼 기법 &nbsp; &nbsp; &nbsp; 3 XP 기법 &nbsp; &nbsp; &nbsp; 4 현행 시스템 파악 &nbsp; &nbsp; &nbsp; 5 개발 기술 환경 파악<br>
-    6 요구사항 정의 &nbsp; &nbsp; &nbsp; 7 요구사항 분석 &nbsp; &nbsp; &nbsp; 8 요구사항 분석 CASE와 HIPO &nbsp; &nbsp; &nbsp; 9 UML(Unified Modeling Language) &nbsp; &nbsp; &nbsp; 10 주요 UML 다이어그램]
+    1 소프트웨어 생명주기 &nbsp; &nbsp; &nbsp; 2 스크럼 기법 &nbsp; &nbsp; &nbsp; 3 XP 기법 &nbsp; &nbsp; &nbsp; 4 현행 시스템 파악 &nbsp; &nbsp; &nbsp; <br>
+    5 개발 기술 환경 파악 &nbsp; &nbsp; &nbsp; 6 요구사항 정의 &nbsp; &nbsp; &nbsp; 7 요구사항 분석 &nbsp; &nbsp; &nbsp; 8 요구사항 분석 CASE와 HIPO &nbsp; &nbsp; &nbsp; <br>
+    9 UML(Unified Modeling Language) &nbsp; &nbsp; &nbsp; 10 주요 UML 다이어그램]
 - [2장 화면설계](https://github.com/seonyong-kim/TIL/tree/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/2.%20%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84)
   - [11. 사용자 인터페이스](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/2.%20%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84/11.%20%EC%82%AC%EC%9A%A9%EC%9E%90%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
   - [12. UI 설계 도구](https://github.com/seonyong-kim/TIL/blob/main/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC/1%EA%B3%BC%EB%AA%A9%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84/2.%20%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84/12.%20UI%20%EC%84%A4%EA%B3%84%20%EB%8F%84%EA%B5%AC.md)
