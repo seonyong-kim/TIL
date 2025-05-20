@@ -6,18 +6,16 @@
 - [수업](https://github.com/seonyong-kim/TIL/tree/main/%EC%BB%B4%ED%93%A8%ED%84%B0%20%EA%B5%AC%EC%A1%B0%EB%A1%A0/%EC%88%98%EC%97%85)<br>
 
 1 &nbsp; &nbsp; &nbsp; 2 &nbsp; &nbsp; &nbsp; 3 &nbsp; &nbsp; &nbsp; 4 The Processor &nbsp; &nbsp; &nbsp; <br>
-5  
+5 &nbsp; &nbsp; &nbsp; 6 Synchronization Tools(2) 7 Synchronization Examples
 
 ## DB
-### DataBase 수업
-- [2. Relational Model & Relational Algebra](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/Relational%20Model%20%26%20Relational%20Algebra.md)
-- [3. SQL Basics](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/SQL%20Basics.md)
-- [6. Relational DB Design](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DataBaseClass/6.%20Relational%20DB%20Design.md)
-### DBMS
-- [SQL VS NoSQL](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/SQL%20VS%20NoSQL.md)
-- [DBMS 비교](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/DBMS%EB%93%A4%20%EB%B9%84%EA%B5%90.md)
-- PostgreSQL
-  - [error](https://github.com/seonyong-kim/TIL/blob/main/DataBase/DBMS/PostgreSQL/error.md)
+- [DataBase 수업](https://github.com/seonyong-kim/TIL/tree/main/DataBase/DataBaseClass)
+1 개요 2 Relational Model & Relational Algebra 3 SQL Basics 4 <br>
+5 6 Relational DB Design 7 Storage and File Structures
+- [DBMS](https://github.com/seonyong-kim/TIL/tree/main/DataBase/DBMS)
+SQL VS NoSQL &nbsp; DBMS 비교
+  - [PostgreSQL](https://github.com/seonyong-kim/TIL/tree/main/DataBase/DBMS/PostgreSQL)
+    error
 ## AI
 ### YOLO
 - [12345](https://github.com/seonyong-kim/TIL/blob/main/AI/YOLO/1.md)
