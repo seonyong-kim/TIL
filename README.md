@@ -55,8 +55,9 @@ SQL VS NoSQL &nbsp; DBMS 비교
   
 ## Algorithm
 - [Algorithm 수업](https://github.com/seonyong-kim/TIL/tree/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%88%98%EC%97%85) <br>
-  7. Graphs and Graph Traversals
-  8. Graph Optimization Problems and Greedy Algorithms
+  7. Graphs and Graph Traversals &nbsp; &nbsp; &nbsp; 8. Graph Optimization Problems and Greedy Algorithms <br>
+  9. Transitive Closure, All-Pairs Shortest Paths &nbsp; &nbsp; 10. Dynamic Programming <br>
+  11. String Matching &nbsp; &nbsp; 13. NP-Complete Problems <br>
 - [기본(코딩테스트 준비)](https://github.com/seonyong-kim/TIL/tree/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B8%B0%EB%B3%B8) <br>
   순열과 조합
 
