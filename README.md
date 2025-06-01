@@ -3,14 +3,17 @@
 오늘 하루 공부한 내용을 정리해 기록합니다.
 ```
 ## OS
-- [학교 수업](https://github.com/seonyong-kim/TIL/tree/main/%EC%BB%B4%ED%93%A8%ED%84%B0%20%EA%B5%AC%EC%A1%B0%EB%A1%A0/%EC%88%98%EC%97%85)<br>
-1 &nbsp; &nbsp; &nbsp; 2 &nbsp; &nbsp; &nbsp; 3 &nbsp; &nbsp; &nbsp; 4 The Processor &nbsp; &nbsp; &nbsp; <br>
-5 &nbsp; &nbsp; &nbsp; 6 Synchronization Tools(2) &nbsp; 7 Synchronization Examples &nbsp; 
+- [학교 수업](https://github.com/seonyong-kim/TIL/tree/main/OS/%ED%95%99%EA%B5%90%20%EC%88%98%EC%97%85)<br>
+1장 &nbsp; &nbsp; 2장 &nbsp; &nbsp; 3장 &nbsp; &nbsp; <br>
+4장 The Processor &nbsp; &nbsp; 5장 &nbsp; &nbsp; 6장 Synchronization Tools(2) &nbsp; &nbsp; <br>
+7장 Synchronization Examples &nbsp; &nbsp; 8장 deadlock &nbsp; &nbsp; 9장 Memory Management <br>
+10장 Virtual Memory &nbsp; &nbsp;
 
 ## DB
 - [DataBase 수업](https://github.com/seonyong-kim/TIL/tree/main/DataBase/DataBaseClass)<br>
-1 개요 &nbsp; 2 Relational Model & Relational Algebra &nbsp; 3 SQL Basics &nbsp; 4 &nbsp; <br>
-5 &nbsp; 6 Relational DB Design &nbsp; 7 Storage and File Structures &nbsp;
+1장 개요 &nbsp; &nbsp; 2장 Relational Model & Relational Algebra &nbsp; &nbsp; 3장 SQL Basics <br>
+4장 &nbsp; &nbsp; 5장 &nbsp; &nbsp; 6장 Relational DB Design &nbsp; <br>
+7장 Storage and File Structures &nbsp; &nbsp; 8장 indexing &nbsp; &nbsp; 9장 &nbsp; &nbsp; <br> 
 - [DBMS](https://github.com/seonyong-kim/TIL/tree/main/DataBase/DBMS)<br>
 SQL VS NoSQL &nbsp; DBMS 비교
   - [PostgreSQL](https://github.com/seonyong-kim/TIL/tree/main/DataBase/DBMS/PostgreSQL)<br>
@@ -23,8 +26,8 @@ SQL VS NoSQL &nbsp; DBMS 비교
 ### flask
 #### 점프 투 flask
 - [1장 플라스크 개발 준비](https://github.com/seonyong-kim/TIL/tree/main/flask/%EC%A0%90%ED%94%84%20%ED%88%AC%20flask) <br>
-  1-01 flask란? &nbsp; 1-02 파이썬 설치하기 &nbsp; 1-03 플라스크 개발 환경 준비하기 &nbsp; 1-04 플라스크 프로젝트 생성하기 &nbsp; <br>
-  1-05 visual studio code사용해 hello world 해보기 &nbsp;
+  1-01 flask란? &nbsp; &nbsp; 1-02 파이썬 설치하기 &nbsp; &nbsp; 1-03 플라스크 개발 환경 준비하기 &nbsp; &nbsp; <br>
+  1-04 플라스크 프로젝트 생성하기 &nbsp; &nbsp; 1-05 visual studio code사용해 hello world 해보기 &nbsp; &nbsp;
   
 ## frontend
 ### reactnative
@@ -38,7 +41,8 @@ SQL VS NoSQL &nbsp; DBMS 비교
   
 ## 컴퓨터 구조론
 - [수업](https://github.com/seonyong-kim/TIL/tree/main/%EC%BB%B4%ED%93%A8%ED%84%B0%20%EA%B5%AC%EC%A1%B0%EB%A1%A0/%EC%88%98%EC%97%85) <br>
-  4장 Processor
+  3장 &nbsp; &nbsp; <br>
+  4장 Processor &nbsp; &nbsp; 5장 Large and Fast: Exploiting Memory Hierarchy &nbsp; &nbsp; 6장
 
 ## 정보처리기사
 ### 1과목
@@ -55,9 +59,9 @@ SQL VS NoSQL &nbsp; DBMS 비교
   
 ## Algorithm
 - [Algorithm 수업](https://github.com/seonyong-kim/TIL/tree/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%88%98%EC%97%85) <br>
-  7. Graphs and Graph Traversals &nbsp; &nbsp; &nbsp; 8. Graph Optimization Problems and Greedy Algorithms <br>
-  9. Transitive Closure, All-Pairs Shortest Paths &nbsp; &nbsp; 10. Dynamic Programming <br>
-  11. String Matching &nbsp; &nbsp; 13. NP-Complete Problems <br>
+  7장 Graphs and Graph Traversals &nbsp; &nbsp; 8장 Graph Optimization Problems and Greedy Algorithms <br>
+  9장 Transitive Closure, All-Pairs Shortest Paths &nbsp; &nbsp; 10장 Dynamic Programming <br>
+  11장 String Matching &nbsp; &nbsp; 13장 NP-Complete Problems <br>
 - [기본(코딩테스트 준비)](https://github.com/seonyong-kim/TIL/tree/main/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EA%B8%B0%EB%B3%B8) <br>
   순열과 조합
 
