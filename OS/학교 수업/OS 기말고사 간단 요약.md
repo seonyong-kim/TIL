@@ -163,7 +163,9 @@ p3,p4선택은 상관없다.
     - 희생자 선택(Selecting a victim) – minimize cost
     - 롤백(Rollback): 안전한 상태(safe state)로 되돌아가야 하며, 해당 상태에서 프로세스를 다시 시작
     - Starvation: 같은 프로세스가 계속 희생자로 선택될 수 있으므로, rollback 횟수를 비용 요소에 포함시켜 고려해야 함
-   
+
+------------------------------------------------------------------------------------------------------------------------
+
 # 9. Memory Management
 ## Background
 ![image](https://github.com/user-attachments/assets/a9152c32-6ee7-4146-b397-cc6ce397edea) <br>
@@ -180,13 +182,12 @@ p3,p4선택은 상관없다.
 ## Hardware Address Protection
 ![image](https://github.com/user-attachments/assets/c4cbb705-d163-4fce-972f-867482c2ce41)
 
-## Address Binding 여기서 부터 다시 공부 시작
+## Address Binding
 - 프로그램의 생애 주기 동안 주소(Addresses)는 여러 단계에서 서로 다른 방식으로 표현된다.
-  - 소스 코드(Source code)의 주소는 보통 기호(symbolic) 로 표현된다.
-  - 컴파일된 코드의 주소(Compiled code addresses)는 재배치 가능한 주소(relocatable addresses) 로 바인딩된다.
-    - 예: “이 모듈의 시작 지점에서부터 14바이트 떨어진 위치”<br>
-    ![image](https://github.com/user-attachments/assets/ead3a907-0f18-448e-8e73-2afc64ec9770)
-  - 링커(linker)나 로더(loader)는 주소재배치(relocatable address) 절대 주소(absolute addresses)에 바인딩한다.
+  - 소스 코드(Source code)의 주소: 기호(symbolic)로 표현된다.
+  - 컴파일된 코드의 주소(Compiled code addresses): 재배치 가능한 주소(relocatable addresses)로 바인딩된다.
+    - 예: 이 모듈의 시작 지점에서부터 14바이트 떨어진 위치
+  - 링커(linker)나 로더(loader): 주소재배치(relocatable address) 절대 주소(absolute addresses)에 바인딩한다.
     - 예: 74014
   - 각 바인딩(binding)은 하나의 주소 공간을 다른 주소 공간으로 매핑하는 것이다. <br>
   
@@ -195,33 +196,29 @@ p3,p4선택은 상관없다.
 ## Logical vs. Physical Address Space
 - 논리 주소(Logical address): CPU에 의해 생성된 주소이며, 가상 주소(Virtual address) 라고도 불린다.<br>
   program에 명시된 주소(0번 ~ limit까지)
-- 물리 주소(Physical address): 메모리 유닛이 실제로 보는 주소이다. -> base + logical = 실제 주
+- 물리 주소(Physical address): 메모리 유닛이 실제로 보는 주소이다. -> base + logical = 실제 주소
 - 논리 주소 공간(Logical address space): 프로그램이 생성할 수 있는 모든 논리 주소의 집합이다.
 - 물리 주소 공간(Physical address space): 프로그램이 실제로 접근하는 모든 물리 주소의 집합이다.
 
 ## Memory-Management Unit (MMU)
 - 하드웨어 장치는 실행 시간(run time)에 논리 주소를 물리 주소로(logical to physical address) 매핑한다.
-- 이 매핑을 구현하는 방법은 여러 가지가 있으며, 이 장(chapter) 뒷부분에서 다룬다.
-- 우선, 재배치 레지스터(relocation register) 를 사용하는 간단한 방식부터 살펴보자.
+- 재배치 레지스터(relocation register)
   - 물리 주소 = 논리 주소 + 재배치 레지스터의 값(physical address = logical address + value in the relocation register)
-    - MS-DOS on Intel 80x86 used 4 relocation registers <br>
-![image](https://github.com/user-attachments/assets/998236bc-f4dc-4673-bf9b-c80f4ce70996)
 
-# Contiguous Memory Allocation
-모든 process가 하나ㅢ 연속된 공간에 할당된다.
+## Contiguous Memory Allocation
+모든 process가 하나 연속된 공간에 할당된다.
 
 ## Contiguous Allocation (1)
-- 주기억장치(Main memory)는 운영체제(OS)와 사용자 프로세스(user processes) 모두를 지원해야 한다.
-- 자원이 제한되어 있으므로 효율적으로 메모리를 할당해야 한다.
+- Main memory는 OS와 user processes 모두를 지원해야 한다.
 - 연속 할당(contiguous allocation)은 초기의 한 방법이다.
-- 일반적으로 주기억장치(Main memory)는 두 개의 파티션으로 나뉜다:
-  - 상주 운영체제(Resident OS) 는 보통 인터럽트 벡터와 함께 저주소(low memory) 에 위치한다.(0번 부터)
-  - 사용자 프로세스(User processes)는 고주소(high memory) 에 위치한다.
+- 일반적으로 Main memory는 두 개의 파티션으로 나뉜다:
+  - Resident OS(상주 운영체제) 는 보통 인터럽트 벡터와 함께 low memory에 위치한다. (0번 부터)
+  - User processes는 high memory에 위치한다.
   - 각 프로세스는 메모리 내에 하나의 연속된 영역에 배치된다.
-- 재배치 레지스터(relocation registers)는 사용자 프로세스들( user processes)이 서로를 침범하거나 운영체제의 코드 및 데이터를 변경하지 못하도록 보호하는 데 사용된다.
-  - Base 레지스터는 가장 작은 물리 주소값(physical address)을 가진다
-  - Limit 레지스터는 허용된 논리 주소(logical address) 범위를 나타낸다.
-  - MMU(메모리 관리 장치) 는 논리 주소(logical address)를 동적으로 물리 주소로 매핑한다. <br>
+- relocation registers는 user processes이 서로를 침범하거나 운영체제의 코드 및 데이터를 변경하지 못하도록 보호하는 데 사용된다.
+  - Base 레지스터: 가장 작은 physical address을 가진다
+  - Limit 레지스터: 허용된 logical address 범위를 나타낸다.
+  - MMU(메모리 관리 장치): logical address를 동적으로 물리 주소로 매핑한다. <br>
 ![image](https://github.com/user-attachments/assets/f3b1dc88-f222-40f8-9e77-7cb9f773717b)
 
 ##  Contiguous Allocation (2)
@@ -229,12 +226,11 @@ p3,p4선택은 상관없다.
   - 멀티프로그래밍(multiprogramming) 정도는 파티션 수에 의해 제한된다.
   - 효율성을 위해 가변 크기 파티션(variable-partition size) 사용
   - Hole(공간): 사용 가능한 메모리 블록
-  - 프로세스가 도착하면, 충분히 큰 hole에서 메모리를 할당받는다.
-  - 프로세스가 종료되면, 해당 파티션이 해제되며, 인접한 자유 공간은 병합된다.
-  - 운영체제는 다음 정보를 관리한다: Operating system maintains information about
-    - (a) 할당된 파티션 (b) 비어 있는 파티션(hole) <br>
+  - 프로세스가 도착, 큰 hole에서 메모리를 할당
+  - 프로세스가 종료, 해당 파티션이 해제, 인접한 자유 공간은 병합
+  - 운영체제는 다음 정보를 관리한다: 
+    - (a) 할당된 파티션 (b) 비어 있는 파티션(hole)
 
-![image](https://github.com/user-attachments/assets/e3651e7a-be61-4876-bc94-085900ab34c9)
 - 동적 저장소 할당 문제(Dynamic storage allocation problem)
   - 크기 n의 메모리 요청을 자유 공간(free hole) 목록에서 어떻게 만족시킬 것인가?
   - First-fit: 처음으로 있는 크기가 충분한 hole에 할당한다.
@@ -243,57 +239,42 @@ p3,p4선택은 상관없다.
 
 ## Contiguous Allocation (3)
 - 단편화(Fragmentation)
-  - 외부 단편화(External fragmentation) (외부 남는 공간의미)
-    - 요청을 만족시킬 만큼의 총 메모리 공간은 존재하지만, 그 공간이 연속적이지 않은 경우<br>
-    ![image](https://github.com/user-attachments/assets/acc7e374-1973-4546-b02d-3ab435f15460)
-  - 내부 단편화(Internal fragmentation) (실제보다 더 큰 $2^n$으로 요청 및 할당)
+  - 외부 단편화(External fragmentation): 남아있는 공간들이 요청을 만족할 만큼 크지만, 공간들이 연속적이지는 않다.
+  - 내부 단편화(Internal fragmentation) (실제보다 더 큰 $2^n$ 으로 요청 및 할당)
     - 할당된 메모리가 요청한 메모리보다 약간 더 클 때 발생하며, 이 차이만큼의 메모리가 파티션 내부에 있지만 사용되지 않는 상태
 - 50% 규칙(50-percent rule)
-  - First-fit 분석에 따르면, N개의 블록이 할당되었을 때, 약 0.5N개의 블록이 단편화로 인해 손실된다.
-    - 이 중 약 1/3은 사용할 수 없는 상태일 수 있다.(= 33%는 Fragmentation때문에 못쓴다.)
-
-- 압축(compaction)은 외부 단편화(external fragmentation)를 줄여준다.(한쪽으로 모은다)
-  - 메모리 내용을 이동(shuffle)시켜서 모든 자유 메모리를 한 곳에 모아 큰 블록을 만든다.
+  - First-fit에서는 N개의 블록이 할당 -> 약 0.5N개의 블록이 단편화로 손실
+    - 이 중 33%는 Fragmentation때문에 못쓴다.
+- 압축(compaction)은 external fragmentation을 줄여준다. -> 메모리 내용을 이동(shuffle)시켜서 모든 자유 메모리를 한 곳에 모아 큰 블록을 만든다.
   - 압축은 재배치(relocation)가 동적(dynamic)일 때만 가능하며 실행 시간(execution time)에 수행된다.
   - I/O problem
     - 입출력 작업 중인 프로세스는 메모리에 고정(latch)되어 있어야 한다.
 
-# Swapping
 ## Swapping
-- 프로세스는 일시적으로 메모리에서 백업 저장소(backing store)로 스왑(swapped)될 수 있으며, 이후 실행을 계속하기 위해 다시 메모리로 불러올 수 있다.<br>
+- process는 일시적으로 memory에서 백업 저장소(backing store)로 swapped될 수 있으며, 이후 실행을 계속하기 위해 다시 메모리로 불러올 수 있다.<br>
   즉, 잠깐 안쓰이는 것을 잠깐 뺸다고 생각.
-  - 여러 프로세스의 총 물리 메모리 요구량이 실제 물리 메모리 크기를 초과할 수 있다.
-- 백업 저장소(backing store)는 모든 사용자의 메모리 이미지를 저장할 만큼 충분히 큰 빠른 디스크이며, 이 메모리 이미지에 대해 직접 접근이 가능해야 한다.
-- 롤 아웃(roll out), 롤 인(roll in) (=sawp outm swap in)은 우선순위 기반 스케줄링 알고리즘(priority-based scheduling algorithms;)에
-  사용되는 스왑 변형으로, 낮은 우선순위 프로세스(lower-priority process)를 스왑 아웃(swapped out)하여 높은 우선순위 프로세스를 로드하고 실행할 수 있게 한다.
+- 백업 저장소(backing store): 크고 빠른 디스크, 이 메모리 이미지에 대해 직접 접근이 가능
+- roll out, roll in (=sawp out, swap in)은 priority-based scheduling algorithms에 사용되는 스왑 변형으로, <br>
+  lower-priority process를 스왑 아웃(swapped out)하여 높은 우선순위 프로세스를 로드하고 실행할 수 있게 한다.
 - 스왑 시간의 대부분은 전송 시간(transfer time)이며, 총 전송 시간은 스왑되는 메모리 양에 정비례한다. <br>
   따라서 swap의 양이 줄면 swap시간도 줄어든다.
-- 시스템은 디스크에 메모리 이미지가 저장된 실행 준비 완료 상태(ready-to-run)인 프로세스들의 **준비 큐(ready queue)**를 유지한다.
+- 시스템은 디스크에 메모리 이미지가 저장된 실행 준비 완료 상태(ready-to-run)인 프로세스들의 ready queue를 유지한다.
 
 ## Schematic View of Swapping
 ![image](https://github.com/user-attachments/assets/a628efe7-aeba-4d53-a8df-8412bcf8d3f0)
 
 ## Context Switch Time Including Swapping
 - CPU에 올릴 다음 프로세스가 메모리에 없으면, 기존 프로세스를 스왑 아웃하고 대상 프로세스를 스왑 인해야 한다.
-- 이로 인해 컨텍스트 스위치 시간(context switch time)이 매우 길어질 수 있다.(memory가 아닌 disk까지 가서 해야되서)
+- 이로 인해 context switch time이 매우 길어질 수 있다.(memory가 아닌 disk까지 가서 해야되서)
 - 예를 들어, 100MB 프로세스를 하드디스크로 스왑할 때 전송 속도가 50MB/s라면,
-  - 스왑 아웃(swap out) 시간은 약 2000ms(2초)이다.
-  - 같은 크기의 프로세스를 스왑 인(swap in)하는 시간도 동일하다.
-  - 따라서, 컨텍스트 스위치 시 스왑에 걸리는 총 시간은 4000ms(4초)가 된다.
-- 스왑하는 메모리 크기를 줄이면 시간을 단축할 수 있는데, 이는 실제로 사용 중인 메모리 양을 파악함으로써 가능하다.
+  - swap out 시간은 약 2000ms(2초)이고, swap in도 시간은 동일하다.
+  - 따라서, context switch시 swap에 걸리는 총 시간은 4000ms(4초)가 된다.
+- swap하는 메모리 크기를 줄이면 시간을 단축할 수 있는데, 이는 실제로 사용 중인 메모리 양을 파악함으로써 가능하다.
   - 시스템 콜(request_memory(), release_memory())을 통해 OS에 메모리 사용 정보를 알려줄 수 있다. <br>
     사용 안하는 공간 처리하는 system call 있으면 유리하다.
 
 ## Swapping on Modern OS
-- Standard swapping not used in modern operating systems
-  - But modified version common
-    - Swap only when free memory extremely low
-- Not typically supported
-  - Flash memory based
-    - Limited number of write cycles
-    - Small amount of space
-    - Poor throughput between flash memory and CPU on mobile platform
-- 표준 스왑핑(standard swapping)은 현대 운영체제에서 사용되지 않는다.
+- standard swapping은 현대 운영체제에서 사용되지 않는다.
   - 그러나 변형된 버전은 흔히 사용된다.(swap 개념자체는 사용)
     - 메모리가 극도로 부족할 때에만 스왑을 수행한다.
 - 보통은 지원되지 않는 경우가 많다.
@@ -301,14 +282,13 @@ p3,p4선택은 상관없다.
     - 쓰기 횟수(write cycles)가 제한적이다.
     - 저장 공간이 적다.
     - 모바일 플랫폼에서 플래시 메모리와 CPU 간 데이터 처리량(throughput)이 낮다.(시간이 오래걸린다)
-    -  swap안하고 memory reclounation(회수)를 한다.
+    - swap안하고 memory reclounation(회수)를 한다.
    
-# Segmentation
 ## Problem of Contiguous Allocation(연속 할당)
 - 각 프로세스는 하나의 세그먼트(파티션)만 가질 수 있다.
   - 두 프로세스가 코드를 공유하면서도 각각의 데이터 영역은 독립적으로 유지하려면 어떻게 해야 할까?
-- 하나의 프로그램은 **여러 세그먼트(segments)**로 이루어져 있다.
-  - 세그먼트는 다음과 같은 **논리적 단위(logical unit)**를 의미한다:
+- 하나의 프로그램은 여러 세그먼트(segments)로 이루어져 있다.
+  - 세그먼트는 다음과 같은 logical unit을 의미한다:
     - main program
     - functions
     - object
@@ -319,42 +299,39 @@ p3,p4선택은 상관없다.
    
 ## Segmentation (1)
 - 사용자 관점의 메모리 구성을 지원하는 메모리 관리 기법(Memory-management scheme) <br>
-![image](https://github.com/user-attachments/assets/2ccc8f74-1a0e-4cb3-a18e-ee6abf68ef53)
+
+![image](https://github.com/user-attachments/assets/2ccc8f74-1a0e-4cb3-a18e-ee6abf68ef53) <br>
 - 프로세스를 여러 메모리 영역에 나누어 배치하는 것을 허용한다.
-- 각 세그먼트마다 별도의 base(기준 주소)와 limit(크기 제한) 레지스터 쌍을 사용하며, <br>
-  읽기(read)와 쓰기(write)를 제어하는 보호 비트(protection bits) 2개를 추가해 설정 가능하게 한다.
-- 각 메모리 참조(memory reference)는 다음 세 가지 방식 중 하나 이상으로 세그먼트와 오프셋(offset)을 나타낸다:
+- 각 세그먼트마다 별도의 base와 limit 레지스터 쌍을 사용하며, <br>
+  read와 write를 제어하는 protection bits 2개를 추가해 설정 가능하게 한다.
+- 각 memory reference는 다음 세 가지 방식 중 하나 이상으로 세그먼트와 offset을 나타낸다:
   - 주소의 상위 비트(top bits)가 세그먼트를 선택하고, 하위 비트(low bits)가 오프셋을 나타낸다. -> 단점: segment별 크기가 정해진다. 최대 1/4
   - 명령어 자체가 암묵적으로 세그먼트를 선택한다.
     - 예: 코드 vs. 데이터, 스택 vs. 데이터
-  - 세그먼트 테이블(segment table)이 프로세스의 모든 세그먼트에 대한 base와 limit 정보를 저장 <br>
+  - segment table이 프로세스의 모든 세그먼트에 대한 base와 limit 정보를 저장 <br>
 
 ![image](https://github.com/user-attachments/assets/6950a875-3b89-4007-bdbf-92cf6f0b5592)<br>
 4개 쓰기위해 4등분 -> 따라서 상위 2bit만 보면 구분 가능하다. 00: code, 01: data, ..., 11: stack <br>
 contigous: process마다 base와 limit 관리 VS segmentation: segment마다 base와 limit 관리
 
-## Logical View of Segmentation
-![image](https://github.com/user-attachments/assets/7f3cee90-134b-4b82-9827-027fed34ab7f)
-
 ## Segmentation Architecture
-- 논리 주소(logical address)는 두 개의 값으로 이루어진 튜플(two tuple)로 구성된다.
+- logical address는 두 개의 값으로 이루어진 튜플(two tuple)로 구성된다.
   - <segment-number, offset> <br>
-  ![image](https://github.com/user-attachments/assets/29dbbb76-cc45-47dc-8de5-377e6075b768)
-- 세그먼트 테이블(segment table): 2차원 물리 주소(two-dimensional physical addresses)를 매핑한다. 즉, table로 관리한다.
-  - base: 세그먼트가 메모리에 위치한 시작 물리 주소를 저장
-  - limit: 세그먼트의 길이(크기)를 지정
+  ![image](https://github.com/user-attachments/assets/29dbbb76-cc45-47dc-8de5-377e6075b768) <br>
+- segment table: 2차원 물리 주소(two-dimensional physical addresses)를 매핑한다. 즉, table로 관리한다.
+  - base와 limit 관리
 - Segment-table base register(STBR): 세그먼트 테이블이 메모리 내 어디에 있는지를 가리킨다.
 - Segment-table length register (STLR): 프로그램이 사용하는 세그먼트의 개수를 나타낸다.(table이 몇칸인지?)
   - 세그먼트 번호 s가 유효하려면 s < STLR이어야 한다. <br>
-  ![image](https://github.com/user-attachments/assets/135064a2-e656-4a8a-9da6-ede8c5ac982c)<br>
+
+![image](https://github.com/user-attachments/assets/135064a2-e656-4a8a-9da6-ede8c5ac982c)<br>
   
 ![image](https://github.com/user-attachments/assets/692c7dbe-094a-4062-acfa-103023bca189)
 
 ## Segmentation Architecture (2)
 ![image](https://github.com/user-attachments/assets/ef84ff92-fc20-4ba1-9da2-d3e9a0c5e41d)
 
-# Paging
-## Motivation of Paging
+## Motivation of Paging 여기서 부터 다시
 - 세그멘테이션(segmentation)의 문제점
   - 외부 단편화(External fragmentation) 여전히 남아있다.
 - 페이징(paging)의 목표
