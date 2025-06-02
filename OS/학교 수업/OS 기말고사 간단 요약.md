@@ -82,6 +82,128 @@ else
 
 -----------------------------------------------------------------------------------------------------------
 
+# 7. Synchronization Examples
+## Bounded-Buffer Problem (1)
+- 6장의 consumer-producer problem으로 돌아가보면<br>
+![image](https://github.com/user-attachments/assets/a71e4ed3-9e61-47ab-a34a-88acdbc03963)
+
+## Bounded-Buffer Problem (2)
+- n개의 buffers, 각각은 item 1개씩 -> Buffer size = n
+- Semaphore mutex initialized to the value 1 // buffer접근에 대한 mutual exclusion보장
+- Semaphore full initialized to the value 0 // n개중에 몇개가 사용되고 있는지
+- Semaphore empty initialized to the value n // n개중에 비어있는 buffer의 수
+
+### The structure of the producer process
+![image](https://github.com/user-attachments/assets/bb419bdf-1fbc-4c0a-b4ea-fed2bf7df3fb)
+
+### The structure of the consumer process
+![image](https://github.com/user-attachments/assets/3257135b-1919-4496-ad86-f3ee4b565698)
+
+## Readers-Writers Problem
+- 하나의 data set이 여러 개의 동시 수행 process들 사이에서 공유된다. process는 아래 2가지중에 하나
+  - Readers: 데이터 집합을 읽기만 한다. 수정은 하지 않는다.
+  - Writers: 읽기와 쓰기 모두 가능한다.
+- Problem : 여러 Reader가 동시에 읽을 수 있도록 허용
+  - 단, 하나의 Writer만이 동시에 공유 데이터를 접근할 수 있어야 함
+- Shared data
+  - Data set
+  - Semaphore rw_mutex (초기값: 1) -> 하나의 writer만 접근하도록 하는 mutex
+  - Semaphore mutex (초기값: 1) -> read-count 접근 통제용 mutex
+  - Integer read_count (초기값: 0) -> 몇명의 reader가 들어와 있는지 확인용
+
+### The structure of a writer process
+![image](https://github.com/user-attachments/assets/cde1550f-4ba1-44e3-b78f-1e3bfead85a1)
+
+### The structure of a reader process(reader 우선권)
+![image](https://github.com/user-attachments/assets/9fdeaa61-7bf6-42b1-8ed3-f958e6bd9c8f)
+
+## Readers-Writers Problem Variations
+- 첫번째 변형 (Reader 우선): Writer가 공유 객체를 사용할 권한을 가진 경우가 아니면, 어떤 Reader도 기다리지 않는다.
+- 두번째 변형 (Writer 우선): 하나의 Writer가 준비되면, 가능한 한 빨리 쓰기를 수행한다.
+- 두 방식 모두 starvation현상이 발생할 수 있으며, 이로 인해 더 많은 변형들이 생겨난다.
+- 이 문제는 일부 시스템에서는 kernel이 reader-writer locks을 제공함으로써 해결된다.
+
+## Readers-Writers Problem(Writer우선)
+- semaphore rw_mutex = 1; // 위와 동일
+- semaphore mutex = 1; // 위와 동일
+- int read_count = 0;
+- semaphore queue = 1;  // writer에게 block당한 reader 대기 큐<br>
+
+### Reader
+![image](https://github.com/user-attachments/assets/4b2906e8-d2f3-4895-a7b6-0a1c0e6a2d13)<br>
+deadlock인 상황 더 자세히 말해보면 <br>
+Reader1이 들어와서 읽기 수행중 writer가 들어와 wait(queue)를 지나 wait(rw_mutex)에 멈춰있는 상황이라고 하자<br>
+그때 reader2가 들어오면 wait(mutex)를 지나 wait(queue)에 멈추게 되고, <br>
+이후 Reader1이 작업 마친후 wait(mutex)를 하지 못하므로 deadlock에 걸리게 된다.
+
+### Writer
+![image](https://github.com/user-attachments/assets/2d480fc3-f813-453a-9275-82f8e3c4a8e3)
+
+## Dining-Philosophers Problem (1)
+- 철학자들은 생각과 식사를 번갈아 가면서 한다. 식사는 두 개의 젓가락을(하나씩) 집어 밥을 먹으려 한다.
+  - 밥을 먹기 위해서는 젓가락 두 개 모두 필요하며, 다 먹으면 둘 다 내려놓는다.
+- 철학자가 5명인 경우
+  - Shared data
+    - Bowl of rice (data set)
+    - Semaphore chopstick [5] initialized to 1
+
+## Dining-Philosophers Problem (2)
+- 해결 방법 1: 세마포어(Semaphore) 방식
+  - Shared semaphore variable
+    - semaphore chopstick[5];
+- The structure of Philosopher i: <br>
+![image](https://github.com/user-attachments/assets/ee275f3d-a165-4abc-9e02-7eb638d0fa42)
+- Problem: Deadlock(자기거 잠가두고 다른 사람의 것을 원한다) -> 5명이 각각 i번째 젓가락만 가진 상황 2번째 wait에서 모두 block
+- deadlock피하는 방법?
+  1. 최대 네 명의 철학자만 동시에 식탁에 앉을 수 있도록 허용한다.
+  2. 두 젓가락이 모두 사용 가능할 때만 철학자가 젓가락을 집을 수 있도록 한다 (이를 위해 pick them up in a critical section).
+     -> monitor로 구현한다.
+  3. 비대칭 방식(asymmetric solution)을 사용한다: 홀수 번호 철학자는 왼쪽 젓가락을 먼저 집고 그다음 오른쪽을 집으며, 짝수 번호 철학자는 오른쪽 젓가락을 먼저 집고 그다음 왼쪽을 집는다.
+- code avoiding deadlock by using an asymmetric solution <br>
+![image](https://github.com/user-attachments/assets/97bf5fd0-4d6d-4b75-ab95-faf1a7c1fe3b)
+
+## Dining-Philosophers Problem (3)
+- Solution 2: Monitor solution
+  - enum {THINKING, HUNGRY, EATING} // 젓가락 기다리는 상태 3가지 <br>
+    state[5];
+    - Philosopher i can set state[i] = EATING only if his two neighbors are not eating
+  - condition self[5]; // 자기자신만 들어가는 큐
+    - Philosopher i delay himself when he is hungry but is unable to obtain the chopsticks he needs
+- 구현 코드 <br>
+![image](https://github.com/user-attachments/assets/b6b5d8db-21db-4d39-b1d3-15cdecd3e13e)
+- Solution 2: Monitor solution
+  - 각 철학자 i는 다음 순서로 pickup()과 putdown() 연산을 호출합니다:
+    ```C
+    DiningPhilosophers.pickup(i);
+    /* EAT */
+    DiningPhilosophers.putdown(i);
+    ```
+  - deadlock은 없지만, but starvation은 가능하다. 순서제어를 안했기 떄문이다.
+
+## Synchronization Example(Windows)
+- uniprocessor systems에서는 interrupt masks를 사용하여 전역 자원 접근을 보호한다. 즉, 막는다(아주 잠깐 동안) 
+- multiprocessor systems에서는 spinlocks을 사용한다.
+  - Spinlocking-thread는 절대 선점되지 않는다. -> spinlock 통과해 critical section에 있는것들
+- 사용자 공간(user-land)에서는 dispatcher objects도 제공되며, 이는 mutexes, semaphores, events, and timers처럼 동작할 수 있다.<br>
+즉, user에게 sync기능 제공한다.
+  - Events
+    - 이벤트는 조건 변수처럼 동작한다.
+  - 시간이 만료되면 하나 이상의 스레드에 알림을 보낸다.
+  - 디스패처 객체(Dispatcher objects)는 두 가지 상태 중 하나로
+    - 신호 상태(signaled-state): 객체가 사용 가능함을 의미한다.
+    - 비신호 상태(non-signaled state): 스레드가 대기 상태에 들어간다.
+
+## Synchronization Example - Linux
+- Linux Synchronization
+  - kernel version 2.6 이전에는 short critical sections을 구현하기 위해 interrupts를 비활성화했다.
+  - Version 2.6부터는 완전 선점형(fully preemptive) 커널이다.(예전과 다른 방식이다)
+- Linux provides:
+  - Semaphores
+  - 원자적 정수(Atomic integers): atomic_t 타입과 원자적 연산을 사용한다.
+    - atomic_t counter;는 내부적으로 int value;를 포함한다. <br>
+![image](https://github.com/user-attachments/assets/d1999e4e-fa79-4f25-850d-98b9c1ce7ede)
+
+------------------------------------------------------------------------------------------------------------
 # 8. Deadlocks
 ## System Model
 - System은 resources로 구성
@@ -272,10 +394,7 @@ p3,p4선택은 상관없다.
   - 컴파일된 코드의 주소(Compiled code addresses): 재배치 가능한 주소(relocatable addresses)로 바인딩된다.
     - 예: 이 모듈의 시작 지점에서부터 14바이트 떨어진 위치
   - 링커(linker)나 로더(loader): 주소재배치(relocatable address) 절대 주소(absolute addresses)에 바인딩한다.
-    - 예: 74014
   - 각 바인딩(binding)은 하나의 주소 공간을 다른 주소 공간으로 매핑하는 것이다. <br>
-  
-![image](https://github.com/user-attachments/assets/a29e701a-7026-420b-b137-956a84188eca)
 
 ## Logical vs. Physical Address Space
 - 논리 주소(Logical address): CPU에 의해 생성된 주소이며, 가상 주소(Virtual address) 라고도 불린다.<br>
@@ -299,15 +418,15 @@ p3,p4선택은 상관없다.
   - Resident OS(상주 운영체제) 는 보통 인터럽트 벡터와 함께 low memory에 위치한다. (0번 부터)
   - User processes는 high memory에 위치한다.
   - 각 프로세스는 메모리 내에 하나의 연속된 영역에 배치된다.
-- relocation registers는 user processes이 서로를 침범하거나 운영체제의 코드 및 데이터를 변경하지 못하도록 보호하는 데 사용된다.
+- relocation registers는 user processes가 서로를 침범하거나 운영체제의 코드 및 데이터를 변경하지 못하도록 보호하는 데 사용된다.
   - Base 레지스터: 가장 작은 physical address을 가진다
   - Limit 레지스터: 허용된 logical address 범위를 나타낸다.
   - MMU(메모리 관리 장치): logical address를 동적으로 물리 주소로 매핑한다. <br>
 ![image](https://github.com/user-attachments/assets/f3b1dc88-f222-40f8-9e77-7cb9f773717b)
 
-##  Contiguous Allocation (2)
+## Contiguous Allocation (2)
 - 다중 파티션 할당(Multiple-partition allocation)
-  - 멀티프로그래밍(multiprogramming) 정도는 파티션 수에 의해 제한된다.
+  - multiprogramming 정도는 파티션 수에 의해 제한된다.
   - 효율성을 위해 가변 크기 파티션(variable-partition size) 사용
   - Hole(공간): 사용 가능한 메모리 블록
   - 프로세스가 도착, 큰 hole에서 메모리를 할당
@@ -413,7 +532,10 @@ contigous: process마다 base와 limit 관리 VS segmentation: segment마다 bas
 ![image](https://github.com/user-attachments/assets/692c7dbe-094a-4062-acfa-103023bca189)
 
 ## Segmentation Architecture (2)
-![image](https://github.com/user-attachments/assets/ef84ff92-fc20-4ba1-9da2-d3e9a0c5e41d)
+![image](https://github.com/user-attachments/assets/ef84ff92-fc20-4ba1-9da2-d3e9a0c5e41d) <br>
+동작하는 순서로는 <br>
+CPU → STBR/STLR 확인 → 논리 주소의 세그먼트 번호(s) 확인 <br>
+→ 세그먼트 테이블의 s번째 엔트리 접근 → base/limit 정보로 변환 이다.
 
 ## Motivation of Paging 여기서 부터 다시
 - 세그멘테이션(segmentation)의 문제점
