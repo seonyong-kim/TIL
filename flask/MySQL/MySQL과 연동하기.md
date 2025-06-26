@@ -38,8 +38,8 @@ def connection(): # SQL 연결을 위한 코드
     return mysql.connector.connect(
     host=""127.0.0.1"",
     user="root",
-    password="자신의 pw",
-    database="FLASK_BASIC"
+    password="본인의 password",
+    database="사용하려는 DB이름"
     )
 
 def close(cursor, db_connection): # 사용 끝나면 DB 종료
@@ -48,23 +48,6 @@ def close(cursor, db_connection): # 사용 끝나면 DB 종료
 ## REST API 활용하기
 ### GET 활용해보기 
 ```
-from flask import Flask, jsonify, request
-import mysql.connector
-
-app = Flask(__name__)
-
-def connection(): # SQL 연결을 위한 코드
-    return mysql.connector.connect(
-    host="127.0.0.1",
-    user="root",
-    password="자신의 pw",
-    database="FLASK_BASIC"
-    )
-
-def close(cursor, db_connection): # 사용 끝나면 DB 종료
-    cursor.close()
-    db_connection.close()
-
 @app.route('/api 주소', methods=['GET'])
 def getFavoritesList():
     # db와 연동하기
@@ -89,3 +72,95 @@ if __name__ == '__main__':
 다만 데이터는 sql에 미리 넣어나야 데이터가 리턴된다.
 
 ### POST
+```
+@app.route('/setting/favorites', methods=['POST'])
+def createFavorite():
+    # db와 연동하기
+    db_connection = connection()
+    cursor = db_connection.cursor() # 튜플로 결과가 아나온다.
+    request_data = request.get_json() # request : 클라이언트의 요청 내용이 담김 -> json으로 파싱해 python 딕셔너리로 바꾼다.
+    # POST
+    insert_query = "INSERT INTO favorite(address,name) VALUES(%s,%s)" # %s는 파라미터 바인딩에 쓰이며, SQL 인젝션 방지에 도움을 준다.                               
+    data = (request_data['address'],request_data['name']) # data는 실제 입력할 값의 튜플.
+    cursor.execute(insert_query,data)
+    db_connection.commit() # 이걸 해야 적용된다. 안하면 rollback상태로 남아서 DB에 반영 안된다.
+    # return
+    cursor = db_connection.cursor(dictionary=True) # 딕셔너리 형태로 반환
+    output_query = 'SELECT * FROM favorite'
+    cursor.execute(output_query)
+    output = cursor.fetchall()
+    # close
+    close(cursor, db_connection)
+
+    return jsonify(output)
+```
+postman에서 test해보면 POST + 주소로 설정 후 <br>
+Body에서 raw선택 후
+```
+{
+  "address": "부산광역시 어딘가에 위치한 곳",
+  "name": "부모님 집"
+}
+```
+이런식으로 놓고자 하는 데이터를 json형식으로 넣는다. <br> 결과를 보면 <br>
+![image](https://github.com/user-attachments/assets/d7341db3-b6d9-40f2-9a36-44d5236a053b) <br>
+잘 반영된것을 알 수 있다. 
+
+### PUT
+```
+@app.route('/setting/favorites/<int:id>', methods = ['PUT'])
+def changeFavorite(id):
+    db_connection = connection()
+    cursor = db_connection.cursor()
+    request_data = request.get_json()
+    # PUT
+    put_query = 'UPDATE favorite SET address=%s, name=%s WHERE id=%s'
+    data = (request_data['address'], request_data['name'], str(id))
+    cursor.execute(put_query, data)
+    db_connection.commit() 
+    # return
+    cursor = db_connection.cursor(dictionary=True)
+    output_query = 'SELECT * FROM favorite'
+    cursor.execute(output_query)
+    output = cursor.fetchall()
+    # close
+    close(cursor, db_connection)
+    return jsonify(output)
+```
+postman에서 test해보면 PUT + 주소로 설정 후 <br>
+Body에서 raw선택 후
+```
+{
+  "address": "서울특별시 00구 00동 어딘가",
+  "name": "부모님 집"
+}
+```
+변경할 데이터를 json형식으로 넣는다. <br> 결과를 보면 <br>
+![image](https://github.com/user-attachments/assets/66b00a0a-9ec1-4f6a-9e1c-4973b102a96e) <br>
+잘 반영된것을 알 수 있다. 
+
+### DELETE
+```
+@app.route('/setting/favorites/<int:id>', methods=['DELETE'])
+def deleteFavorite(id):
+    db_connection = connection()
+    cursor = db_connection.cursor()
+    # return
+    query = 'SELECT * FROM favorite WHERE id = %s'
+    cursor.execute(query, (id,))
+    result = cursor.fetchall()
+    # DELETE
+    deleteQuery = 'DELETE FROM favorite WHERE id = %s'
+    cursor.execute(deleteQuery,(id,))
+    db_connection.commit()
+    #close
+    close(cursor, db_connection)
+    return jsonify(result)
+```
+
+postman에서 test해보면 DELETE + 주소로 설정 후 <br>
+Body에서 none선택 후 결과를 보면 <br>
+![image](https://github.com/user-attachments/assets/3dbef8a1-0e1f-4bbc-93e4-677fa4c5a4de) <br>
+잘 반영된것을 알 수 있다. 
+이제 서버에서의 DB연결 및 동작이 끝났다. <br>
+다음으로 할것은 프론트 <-> 서버 + DB 연결을 해보겠다.
