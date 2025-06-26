@@ -69,7 +69,7 @@ if __name__ == '__main__':
 이후 Postman에서 GET + http://127.0.0.1:5000/api주소로 테스트 해보면 <br>
 ![image](https://github.com/user-attachments/assets/1fc9ac16-eb11-4588-9395-2cf6293ce532) <br>
 이런식으로 결과가 리턴되는것을 알 수 있다. <br>
-다만 데이터는 sql에 미리 넣어나야 데이터가 리턴된다.
+다만 데이터는 sql에 미리 넣어야 데이터가 return된다.
 
 ### POST
 ```
@@ -102,7 +102,7 @@ Body에서 raw선택 후
   "name": "부모님 집"
 }
 ```
-이런식으로 놓고자 하는 데이터를 json형식으로 넣는다. <br> 결과를 보면 <br>
+이런식으로 넣고자 하는 데이터를 json형식으로 넣는다. <br> 결과를 보면 <br>
 ![image](https://github.com/user-attachments/assets/d7341db3-b6d9-40f2-9a36-44d5236a053b) <br>
 잘 반영된것을 알 수 있다. 
 
